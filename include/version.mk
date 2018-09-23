@@ -10,6 +10,8 @@
 # REVISION:=x
 # SOURCE_DATE_EPOCH:=x
 
+REVISION:=r$(shell git rev-list --count HEAD)
+
 PKG_CONFIG_DEPENDS += \
 	CONFIG_VERSION_HOME_URL \
 	CONFIG_VERSION_BUG_URL \
@@ -26,10 +28,10 @@ PKG_CONFIG_DEPENDS += \
 sanitize = $(call tolower,$(subst _,-,$(subst $(space),-,$(1))))
 
 VERSION_NUMBER:=$(call qstrip,$(CONFIG_VERSION_NUMBER))
-VERSION_NUMBER:=$(if $(VERSION_NUMBER),$(VERSION_NUMBER),18.06-SNAPSHOT)
+VERSION_NUMBER:=$(if $(VERSION_NUMBER),$(VERSION_NUMBER),18.06)
 
 VERSION_CODE:=$(call qstrip,$(CONFIG_VERSION_CODE))
-VERSION_CODE:=$(if $(VERSION_CODE),$(VERSION_CODE),$(REVISION))
+VERSION_CODE:=$(if $(VERSION_CODE),$(VERSION_CODE),$(shell date +%Y%m%d))
 
 VERSION_REPO:=$(call qstrip,$(CONFIG_VERSION_REPO))
 VERSION_REPO:=$(if $(VERSION_REPO),$(VERSION_REPO),http://downloads.openwrt.org/releases/18.06-SNAPSHOT)
