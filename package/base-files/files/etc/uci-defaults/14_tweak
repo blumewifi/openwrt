@@ -1,0 +1,9 @@
+#!/bin/sh
+
+uci batch <<-EOF
+	set luci.main.lang='zh_cn'
+	commit luci
+	set system.@system[-1].zonename='Asia/Shanghai'
+	set system.@system[-1].timezone='CST-8'
+	commit system
+EOF
