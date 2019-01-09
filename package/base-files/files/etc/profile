@@ -57,3 +57,5 @@ service() {
 	}
 	/etc/init.d/$@
 }
+
+ulimit -HSn 65535
